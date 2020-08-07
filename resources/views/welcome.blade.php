@@ -8,11 +8,12 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
         <!-- Styles -->
         <style>
             html, body {
                 background-color: #fff;
+                background-image: none;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -97,4 +98,15 @@
             </div>
         </div>
     </body>
+
+
+    <script>
+        var botmanWidget = {
+            aboutText: 'Equipe de apoio',
+            introMessage: "✋ Olá! Como posso ajudar?"
+        };
+    </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
 </html>
