@@ -23,40 +23,40 @@ class BotManController extends Controller
     public function handle()
     {
         $botman = app('botman');
+
+        $dialogflow = ApiAi::create('AIzaSyBx39XIMRF1FSSGvA_-lZLnAhtbqvt59jg')->listenForAction();
+        $botman->middleware->received($dialogflow);
+        $botman->hears('smalltalk.agent.age', function ( $bot) {
+            $extras = $bot->getMessage()->getExtras();
+            $apiReply = $extras['apiReply'];
+            $apiAction = $extras['apiAction'];
+            $apiIntent = $extras['apiIntent'];
+            $bot->reply($apiReply);
+        })->middleware($dialogflow);
+
+
 //
-//        $dialogflow = ApiAi::create('0913868cc83fb2c4e1459136626c0921521a2f24')->listenForAction();
-//        $botman->middleware->received($dialogflow);
-//        $botman->hears('smalltalk.agent.age', function ( $bot) {
-//            $extras = $bot->getMessage()->getExtras();
-//            $apiReply = $extras['apiReply'];
-//            $apiAction = $extras['apiAction'];
-//            $apiIntent = $extras['apiIntent'];
-//            $bot->reply($apiReply);
-//        })->middleware($dialogflow);
+//
+//
+//        $botman->hears('Olá|olá|ola|Ola', function ($bot) {
+//            $bot->typesAndWaits(2);
+//            $this->askName($bot);
+//
+//        });
+//
+//        $botman->hears('Signo|signo', function ($bot) {
+//            $bot->typesAndWaits(2);
+//            $bot->startConversation(new QuizConversation());
+//        });
+//
+//        $botman->fallback(function ($bot) {
+//            $bot->reply($this->fallbackResponse());
+//        });
 
-
-
-
-
-        $botman->hears('Olá|olá|ola|Ola', function ($bot) {
-            $bot->typesAndWaits(2);
-            $this->askName($bot);
-
-        });
-
-        $botman->hears('Signo|signo', function ($bot) {
-            $bot->typesAndWaits(2);
-            $bot->startConversation(new QuizConversation());
-        });
 
         $botman->fallback(function ($bot) {
-            $bot->reply($this->fallbackResponse());
+            $bot->reply($bot->getMessage()->getExtras('apiReply'));
         });
-
-
-//        $botman->fallback(function ($bot) {
-//            $bot->reply($bot->getMessage()->getExtras('apiReply'));
-//        });
 
         $botman->listen();
 
