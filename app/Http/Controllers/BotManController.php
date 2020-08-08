@@ -33,7 +33,7 @@ class BotManController extends Controller
 
         $config = [
             "telegram" => [
-                "token" => config('botman.telegram.telegram.token')
+                "token" => config('botman.telegram.token')
             ]
         ];
 
