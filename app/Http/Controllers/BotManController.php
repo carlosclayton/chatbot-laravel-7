@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Conversations\QuizConversation;
+use App\Conversations\TelegramConversation;
 use App\Conversations\UserConversation;
 use App\Http\Middleware\DialogflowV2;
 use App\Http\Middleware\TypingMiddleware;
@@ -39,6 +40,11 @@ class BotManController extends Controller
 
         DriverManager::loadDriver(TelegramDriver::class);
         $botman = BotManFactory::create($config);
+
+        $botman->hears('/start|start', function ($bot) {
+            $bot->typesAndWaits(2);
+            $bot->startConversation(new TelegramConversation());
+        });
 
 
         $dialogflow = DialogflowV2::create('en')
