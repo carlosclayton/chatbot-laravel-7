@@ -8,7 +8,7 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
+//use Illuminate\Support\Facades\Log;
 
 class UserConversation extends Conversation
 {
@@ -69,8 +69,8 @@ class UserConversation extends Conversation
 
     public function askName()
     {
-        Log::info($this->bot->userStorage()->all());
-        Log::error('ID: '. $this->bot->getUser()->getInfo('userId'));
+//        Log::info($this->bot->userStorage()->all());
+//        Log::error('ID: '. $this->bot->getUser()->getInfo('userId'));
         $this->bot->ask('😀 Olá! Qual o seu nome?', function (Answer $answer) {
             $this->say('🥰 Prazer  ' . $answer->getText() );
         });

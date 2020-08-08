@@ -21,7 +21,6 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 
 class BotManController extends Controller
 {
@@ -49,7 +48,6 @@ class BotManController extends Controller
 
         $botman->hears('smalltalk.agent.*', function ( $bot) {
             $extras = $bot->getMessage()->getExtras();
-            Log::error('EXTRA: ', $extras);
             $apiReply = $extras['apiReply'];
             $apiAction = $extras['apiAction'];
             $apiIntent = $extras['apiIntent'];
