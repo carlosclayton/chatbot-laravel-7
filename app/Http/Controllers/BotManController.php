@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Conversations\QuizConversation;
 use App\Conversations\UserConversation;
 use App\Http\Middleware\DialogflowV2;
+use App\Http\Middleware\TypingMiddleware;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
@@ -43,6 +44,9 @@ class BotManController extends Controller
         })->middleware($dialogflow);
 
         $botman->hears('Olá|olá|ola|Ola', function ($bot) {
+            $typingMiddleware = new TypingMiddleware();
+            $bot->middleware->sending($typingMiddleware);
+
             $bot->typesAndWaits(2);
             $this->askName($bot);
 
