@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Conversations\QuizConversation;
+use App\Conversations\UserConversation;
+use App\Http\Middleware\DialogflowV2;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Middleware\ApiAi;
 use BotMan\BotMan\Middleware\Dialogflow;
+
 use Illuminate\Http\Request;
 use BotMan\BotMan\Messages\Incoming\Answer;
 
 use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class BotManController extends Controller
 {
@@ -22,12 +26,16 @@ class BotManController extends Controller
      */
     public function handle()
     {
-        $botman = app('botman');
+        $botman = resolve('botman');
 
-        $dialogflow = ApiAi::create('AIzaSyBx39XIMRF1FSSGvA_-lZLnAhtbqvt59jg')->listenForAction();
+        $dialogflow = DialogflowV2::create('en')
+            ->listenForAction();
+
         $botman->middleware->received($dialogflow);
-        $botman->hears('smalltalk.agent.age', function ( $bot) {
+
+        $botman->hears('smalltalk.agent.*', function ( $bot) {
             $extras = $bot->getMessage()->getExtras();
+            Log::error('EXTRA: ', $extras);
             $apiReply = $extras['apiReply'];
             $apiAction = $extras['apiAction'];
             $apiIntent = $extras['apiIntent'];
@@ -35,28 +43,29 @@ class BotManController extends Controller
         })->middleware($dialogflow);
 
 
-//
-//
-//
-//        $botman->hears('Olá|olá|ola|Ola', function ($bot) {
-//            $bot->typesAndWaits(2);
-//            $this->askName($bot);
-//
-//        });
-//
-//        $botman->hears('Signo|signo', function ($bot) {
-//            $bot->typesAndWaits(2);
-//            $bot->startConversation(new QuizConversation());
-//        });
-//
-//        $botman->fallback(function ($bot) {
-//            $bot->reply($this->fallbackResponse());
-//        });
 
+
+
+        $botman->hears('Olá|olá|ola|Ola', function ($bot) {
+            $bot->typesAndWaits(2);
+            $this->askName($bot);
+
+        });
+
+        $botman->hears('Signo|signo', function ($bot) {
+            $bot->typesAndWaits(2);
+            $bot->startConversation(new QuizConversation());
+        });
+
+        $botman->hears('login', function ($bot) {
+            $bot->typesAndWaits(2);
+            $bot->startConversation(new UserConversation());
+        });
 
         $botman->fallback(function ($bot) {
-            $bot->reply($bot->getMessage()->getExtras('apiReply'));
+            $bot->reply($this->fallbackResponse());
         });
+
 
         $botman->listen();
 
@@ -74,6 +83,7 @@ class BotManController extends Controller
 
     public function askName($botman)
     {
+
         $botman->ask('😀 Olá! Qual o seu nome?', function (Answer $answer) {
             $name = $answer->getText();
             $this->say('🥰 Prazer  ' . $name . ', como podemos ajuda-lo?');
