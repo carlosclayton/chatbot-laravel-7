@@ -31,14 +31,14 @@ class BotManController extends Controller
     {
         $botman = resolve('botman');
 
-        $config = [
-            "telegram" => [
-                "token" => config('botman.telegram.telegram.token')
-            ]
-        ];
-
-        DriverManager::loadDriver(TelegramDriver::class);
-        $botman = BotManFactory::create($config);
+//        $config = [
+//            "telegram" => [
+//                "token" => config('botman.telegram.telegram.token')
+//            ]
+//        ];
+//
+//        DriverManager::loadDriver(TelegramDriver::class);
+//        $botman = BotManFactory::create($config);
 
 
         $dialogflow = DialogflowV2::create('en')
