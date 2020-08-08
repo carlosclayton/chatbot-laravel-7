@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
-        "ext-bcmath": "*",
         "botman/botman": "^2.6",
         "botman/driver-telegram": "^1.6",
         "botman/driver-web": "^1.5",
@@ -19,8 +18,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1",
-        "phpseclib/bcmath_compat": "^1.0"
+        "laravel/ui": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
