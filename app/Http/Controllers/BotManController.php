@@ -42,10 +42,6 @@ class BotManController extends Controller
             $bot->reply($apiReply);
         })->middleware($dialogflow);
 
-
-
-
-
         $botman->hears('Olá|olá|ola|Ola', function ($bot) {
             $bot->typesAndWaits(2);
             $this->askName($bot);

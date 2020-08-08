@@ -70,9 +70,9 @@ class UserConversation extends Conversation
     public function askName()
     {
         Log::info($this->bot->userStorage()->all());
+        Log::error('ID: '. $this->bot->getUser()->getInfo('userId'));
         $this->bot->ask('😀 Olá! Qual o seu nome?', function (Answer $answer) {
             $this->say('🥰 Prazer  ' . $answer->getText() );
-            $this->askEmail();
         });
 
     }

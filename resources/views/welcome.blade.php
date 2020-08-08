@@ -103,7 +103,13 @@
     <script>
         var botmanWidget = {
             aboutText: 'Equipe de apoio',
-            introMessage: "✋ Olá! Como posso ajudar?"
+            introMessage: "✋ Olá,  Como posso ajudar?",
+            title: 'Atendimento  virtual',
+            aboutLink: 'http://chatbot.local/',
+            placeholderText: 'Digite aqui...',
+            mainColor: '#3490dc',
+            bubbleBackground: '#6cb2eb',
+            bubbleAvatarUrl: 'https://icon-library.com/images/icon-chat/icon-chat-5.jpg'
         };
     </script>
 
