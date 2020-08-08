@@ -7,11 +7,14 @@ use App\Conversations\UserConversation;
 use App\Http\Middleware\DialogflowV2;
 use App\Http\Middleware\TypingMiddleware;
 use BotMan\BotMan\BotMan;
+use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\BotMan\Middleware\ApiAi;
 use BotMan\BotMan\Middleware\Dialogflow;
 
+use BotMan\Drivers\Telegram\TelegramDriver;
 use Illuminate\Http\Request;
 use BotMan\BotMan\Messages\Incoming\Answer;
 
@@ -28,6 +31,16 @@ class BotManController extends Controller
     public function handle()
     {
         $botman = resolve('botman');
+
+        $config = [
+            "telegram" => [
+                "token" => config('botman.telegram.token')
+            ]
+        ];
+
+        DriverManager::loadDriver(TelegramDriver::class);
+        $botman = BotManFactory::create($config);
+
 
         $dialogflow = DialogflowV2::create('en')
             ->listenForAction();
