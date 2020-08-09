@@ -31,7 +31,7 @@ class BotManController extends Controller
      */
     public function handle()
     {
-//        $botman = app('botman');
+        $botman = app('botman');
 
 //        $dialogflow = DialogflowV2::create('en')
 //            ->listenForAction();
@@ -46,13 +46,16 @@ class BotManController extends Controller
 //            $bot->reply($apiReply);
 //        })->middleware($dialogflow);
 
-        $config = [
-            "matchingData" => [
-                "driver" => 'web'
-            ]
-        ];
-        DriverManager::loadDriver(WebDriver::class);
-        $botman = BotManFactory::create($config);
+//        $config = [
+//            'web' => [
+//                'matchingData' => [
+//                    'driver' => 'web',
+//                ]
+//            ]
+//        ];
+//
+//        DriverManager::loadDriver(WebDriver::class);
+//        $botman = BotManFactory::create($config);
 
         $botman->hears('Olá|olá|ola|Ola', function ($bot) {
             $bot->typesAndWaits(1);
