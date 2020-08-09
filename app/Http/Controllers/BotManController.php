@@ -80,6 +80,7 @@ class BotManController extends Controller
         });
 
         $botman->fallback(function ($bot) {
+            $bot->typesAndWaits(2);
             $bot->reply($this->fallbackResponse());
         });
 
