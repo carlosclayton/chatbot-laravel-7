@@ -34,12 +34,12 @@ class BotManController extends Controller
 
         $config = [
             "telegram" => [
-                "token" => config('botman.telegram.telegram.token')
+                "token" => env('TELEGRAM_TOKEN')
             ]
         ];
 
         DriverManager::loadDriver(TelegramDriver::class);
-        $botman = BotManFactory::create(config('botman.telegram.token'));
+        $botman = BotManFactory::create($config);
 
         $botman->hears('/start|start', function ($bot) {
             $bot->typesAndWaits(2);
