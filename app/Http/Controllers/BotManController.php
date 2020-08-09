@@ -9,6 +9,7 @@ use App\Http\Middleware\DialogflowV2;
 use App\Http\Middleware\TypingMiddleware;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Cache\LaravelCache;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
@@ -31,7 +32,7 @@ class BotManController extends Controller
      */
     public function handle()
     {
-        $botman = app('botman');
+//        $botman = app('botman');
 
 //        $dialogflow = DialogflowV2::create('en')
 //            ->listenForAction();
@@ -46,16 +47,20 @@ class BotManController extends Controller
 //            $bot->reply($apiReply);
 //        })->middleware($dialogflow);
 
-//        $config = [
-//            'web' => [
-//                'matchingData' => [
-//                    'driver' => 'web',
-//                ]
-//            ]
-//        ];
-//
-//        DriverManager::loadDriver(WebDriver::class);
-//        $botman = BotManFactory::create($config);
+        $config = [
+            'web' => [
+                'matchingData' => [
+                    'driver' => 'web',
+                ]
+            ],
+            'config' => [
+                'user_cache_time' => 30000,
+                'conversation_cache_time' => 30000,
+            ]
+        ];
+
+        DriverManager::loadDriver(WebDriver::class);
+        $botman = BotManFactory::create($config, new LaravelCache());
 
         $botman->hears('Olá|olá|ola|Ola', function ($bot) {
             $bot->typesAndWaits(1);

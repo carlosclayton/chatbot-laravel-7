@@ -9,6 +9,7 @@ use App\Http\Middleware\DialogflowV2;
 use App\Http\Middleware\TypingMiddleware;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Cache\LaravelCache;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
@@ -32,13 +33,24 @@ class TelegramController extends Controller
     public function handle()
     {
         $config = [
+            'web' => [
+                'matchingData' => [
+                    'driver' => 'telegram',
+                ]
+            ],
             "telegram" => [
-                "token" => env('TELEGRAM_TOKEN')
+                "telegram" => [
+                    "token" => env('TELEGRAM_TOKEN')
+                ]
+            ],
+            "config" => [
+                "user_cache_time" => 30000,
+                "conversation_cache_time" => 30000,
             ]
         ];
 
         DriverManager::loadDriver(TelegramDriver::class);
-        $botman = BotManFactory::create($config);
+        $botman = BotManFactory::create($config, new LaravelCache());
 
 
         $botman->hears('/start|start', function ($bot) {
@@ -59,13 +71,12 @@ class TelegramController extends Controller
                 ],
                 [
                     'pattern' => 'não|nao|obrigado',
-                    'callback' => function (    ) {
+                    'callback' => function () {
                         $this->say('😔 Tudo bem, fica pra próxima.');
                     }
                 ]
             ]);
         });
-
 
 
         $botman->fallback(function ($bot) {
@@ -74,15 +85,13 @@ class TelegramController extends Controller
         });
 
 
-
-
-
         $botman->listen();
 
 
     }
 
-    public function fallbackResponse(){
+    public function fallbackResponse()
+    {
         return Collection::make([
             'Desculpe, não entendi. Poderia repetir, por favor?',
             'Ainda não compreendi, poderia tentar novamente?',
@@ -99,7 +108,6 @@ class TelegramController extends Controller
             $this->say('🥰 Prazer  ' . $name . ', como podemos ajuda-lo?');
         });
     }
-
 
 
 }
