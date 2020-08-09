@@ -42,12 +42,12 @@ class BotManController extends Controller
         $botman = BotManFactory::create($config);
 
         $botman->hears('/start|start', function ($bot) {
-            $bot->typesAndWaits(2);
+            $bot->typesAndWaits(1);
             $bot->startConversation(new TelegramConversation());
-        });
+        })->stopsConversation();;
 
         $botman->hears('/lancamento|lancamento', function ($bot) {
-            $bot->typesAndWaits(2);
+            $bot->typesAndWaits(1);
             $bot->reply('🥰 Falta pouco para o lançamento do curso: Desenvolvendo Chatbots multiplataformas com linguagem natural usando Laravel 7');
 
             $bot->ask('Gostaria de participar?', [
@@ -84,23 +84,23 @@ class BotManController extends Controller
             $typingMiddleware = new TypingMiddleware();
             $bot->middleware->sending($typingMiddleware);
 
-            $bot->typesAndWaits(2);
+            $bot->typesAndWaits(1);
             $this->askName($bot);
 
         });
 
         $botman->hears('Signo|signo', function ($bot) {
-            $bot->typesAndWaits(2);
+            $bot->typesAndWaits(1);
             $bot->startConversation(new QuizConversation());
         });
 
         $botman->hears('login', function ($bot) {
-            $bot->typesAndWaits(2);
+            $bot->typesAndWaits(1);
             $bot->startConversation(new UserConversation());
         });
 
         $botman->fallback(function ($bot) {
-            $bot->typesAndWaits(2);
+            $bot->typesAndWaits(1);
             $bot->reply($this->fallbackResponse());
         });
 
@@ -114,7 +114,7 @@ class BotManController extends Controller
         return Collection::make([
             'Desculpe, não entendi. Poderia repetir, por favor?',
             'Ainda não compreendi, poderia tentar novamente?',
-            'Opa! não consegui entener, poderia repetir',
+            'Opa! não consegui entender, poderia repetir',
             'Ok, vamos começar de novo. Poderia tentar mais uma vez?'
         ])->random();
     }
