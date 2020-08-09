@@ -39,7 +39,7 @@ class BotManController extends Controller
         ];
 
         DriverManager::loadDriver(TelegramDriver::class);
-        $botman = BotManFactory::create($config);
+        $botman = BotManFactory::create(config('botman.telegram'));
 
         $botman->hears('/start|start', function ($bot) {
             $bot->typesAndWaits(2);
