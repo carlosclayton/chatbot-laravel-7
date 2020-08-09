@@ -48,7 +48,7 @@ class BotManController extends Controller
 
         $botman->hears('/lancamento|lancamento', function ($bot) {
             $bot->typesAndWaits(2);
-            $bot->say('🥰 Falta pouco para o lançamento do curso: Desenvolvendo Chatbots multiplataformas com linguagem natural usando Laravel 7');
+            $bot->reply('🥰 Falta pouco para o lançamento do curso: Desenvolvendo Chatbots multiplataformas com linguagem natural usando Laravel 7');
 
             $bot->ask('Gostaria de participar?', [
                 [
