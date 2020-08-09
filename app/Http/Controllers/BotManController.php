@@ -47,18 +47,18 @@ class BotManController extends Controller
         });
 
 
-        $dialogflow = DialogflowV2::create('en')
-            ->listenForAction();
-
-        $botman->middleware->received($dialogflow);
-
-        $botman->hears('smalltalk.agent.*', function ( $bot) {
-            $extras = $bot->getMessage()->getExtras();
-            $apiReply = $extras['apiReply'];
-            $apiAction = $extras['apiAction'];
-            $apiIntent = $extras['apiIntent'];
-            $bot->reply($apiReply);
-        })->middleware($dialogflow);
+//        $dialogflow = DialogflowV2::create('en')
+//            ->listenForAction();
+//
+//        $botman->middleware->received($dialogflow);
+//
+//        $botman->hears('smalltalk.agent.*', function ( $bot) {
+//            $extras = $bot->getMessage()->getExtras();
+//            $apiReply = $extras['apiReply'];
+//            $apiAction = $extras['apiAction'];
+//            $apiIntent = $extras['apiIntent'];
+//            $bot->reply($apiReply);
+//        })->middleware($dialogflow);
 
         $botman->hears('Olá|olá|ola|Ola', function ($bot) {
             $typingMiddleware = new TypingMiddleware();
