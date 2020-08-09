@@ -10,36 +10,18 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 class TelegramConversation extends Conversation
 {
 
+    /**
+     * @return mixed|void
+     */
     public function run()
     {
-        // This will be called immediately
-        $this->askFirstname();
+        $this->message();
     }
 
-    protected $firstname;
-
-    protected $email;
-
-    public function askFirstname()
+    public function message()
     {
-        $this->ask('Hello! What is your firstname?', function (Answer $answer) {
-            // Save result
-            $this->firstname = $answer->getText();
-
-            $this->say('Nice to meet you ' . $this->firstname);
-            $this->askEmail();
-        });
+        $firstName = $this->bot->getUser()->getFirstName();
+        $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
     }
-
-    public function askEmail()
-    {
-        $this->ask('One more thing - what is your email?', function (Answer $answer) {
-            // Save result
-            $this->email = $answer->getText();
-
-            $this->say('Great - that is all we need, ' . $this->firstname);
-        });
-    }
-
 
 }
