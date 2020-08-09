@@ -36,6 +36,7 @@ class TelegramController extends Controller
                 "token" => env('TELEGRAM_TOKEN')
             ]
         ];
+
         DriverManager::loadDriver(TelegramDriver::class);
         $botman = BotManFactory::create($config);
 
