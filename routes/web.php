@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
+Route::match(['get', 'post'], '/telegram', 'TelegramController@handle');
 
 Auth::routes();
 

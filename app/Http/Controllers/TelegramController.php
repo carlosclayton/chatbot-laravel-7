@@ -24,43 +24,48 @@ use BotMan\BotMan\Messages\Attachments\Image;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use Illuminate\Support\Collection;
 
-class BotManController extends Controller
+class TelegramController extends Controller
 {
     /**
      * Place your BotMan logic here.
      */
     public function handle()
     {
-        $botman = app('botman');
+        $config = [
+            "telegram" => [
+                "token" => env('TELEGRAM_TOKEN')
+            ]
+        ];
+        DriverManager::loadDriver(TelegramDriver::class);
+        $botman = BotManFactory::create($config);
 
-//        $dialogflow = DialogflowV2::create('en')
-//            ->listenForAction();
-//
-//        $botman->middleware->received($dialogflow);
-//
-//        $botman->hears('smalltalk.agent.*', function ( $bot) {
-//            $extras = $bot->getMessage()->getExtras();
-//            $apiReply = $extras['apiReply'];
-//            $apiAction = $extras['apiAction'];
-//            $apiIntent = $extras['apiIntent'];
-//            $bot->reply($apiReply);
-//        })->middleware($dialogflow);
 
-        $botman->hears('Olá|olá|ola|Ola', function ($bot) {
+        $botman->hears('/start|start', function ($bot) {
             $bot->typesAndWaits(1);
-            $this->askName($bot);
-
+            $bot->startConversation(new TelegramConversation());
         });
 
-        $botman->hears('Signo|signo', function ($bot) {
-            $bot->typesAndWaits(1);
-            $bot->startConversation(new QuizConversation());
+        $botman->hears('/lancamento|lancamento', function (Botman $botman) {
+            $botman->typesAndWaits(1);
+            $botman->reply('🥰 Falta pouco para o lançamento do curso: Desenvolvendo Chatbots multiplataformas com linguagem natural usando Laravel 7');
+
+            $botman->ask('Gostaria de participar?', [
+                [
+                    'pattern' => 'Sim|sim|claro|pode ser|tenho interesse',
+                    'callback' => function () {
+                        $this->say('😉 Okay, vamos registrar seu interesse. ');
+                    }
+                ],
+                [
+                    'pattern' => 'não|nao|obrigado',
+                    'callback' => function (    ) {
+                        $this->say('😔 Tudo bem, fica pra próxima.');
+                    }
+                ]
+            ]);
         });
 
-//        $botman->hears('login', function ($bot) {
-//            $bot->typesAndWaits(1);
-//            $bot->startConversation(new UserConversation());
-//        });
+
 
         $botman->fallback(function ($bot) {
             $bot->typesAndWaits(1);
@@ -68,13 +73,15 @@ class BotManController extends Controller
         });
 
 
+
+
+
         $botman->listen();
 
 
     }
 
-    public function fallbackResponse()
-    {
+    public function fallbackResponse(){
         return Collection::make([
             'Desculpe, não entendi. Poderia repetir, por favor?',
             'Ainda não compreendi, poderia tentar novamente?',
@@ -91,6 +98,7 @@ class BotManController extends Controller
             $this->say('🥰 Prazer  ' . $name . ', como podemos ajuda-lo?');
         });
     }
+
 
 
 }
