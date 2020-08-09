@@ -44,7 +44,7 @@ class BotManController extends Controller
         $botman->hears('/start|start', function ($bot) {
             $bot->typesAndWaits(1);
             $bot->startConversation(new TelegramConversation());
-        })->stopsConversation();;
+        });
 
         $botman->hears('/lancamento|lancamento', function ($bot) {
             $bot->typesAndWaits(1);
@@ -53,14 +53,14 @@ class BotManController extends Controller
             $bot->ask('Gostaria de participar?', [
                 [
                     'pattern' => 'Sim|sim|claro|pode ser|tenho interesse',
-                    'callback' => function ($bot) {
-                        $bot->say('😉 Okay, vamos registrar seu interesse. ');
+                    'callback' => function () {
+                        $this->say('😉 Okay, vamos registrar seu interesse. ');
                     }
                 ],
                 [
                     'pattern' => 'não|nao|obrigado',
-                    'callback' => function ($bot) {
-                        $bot->say('😔 Tudo bem, fica pra próxima.');
+                    'callback' => function (    ) {
+                        $this->say('😔 Tudo bem, fica pra próxima.');
                     }
                 ]
             ]);
@@ -81,9 +81,6 @@ class BotManController extends Controller
 //        })->middleware($dialogflow);
 
         $botman->hears('Olá|olá|ola|Ola', function ($bot) {
-            $typingMiddleware = new TypingMiddleware();
-            $bot->middleware->sending($typingMiddleware);
-
             $bot->typesAndWaits(1);
             $this->askName($bot);
 
@@ -94,10 +91,10 @@ class BotManController extends Controller
             $bot->startConversation(new QuizConversation());
         });
 
-        $botman->hears('login', function ($bot) {
-            $bot->typesAndWaits(1);
-            $bot->startConversation(new UserConversation());
-        });
+//        $botman->hears('login', function ($bot) {
+//            $bot->typesAndWaits(1);
+//            $bot->startConversation(new UserConversation());
+//        });
 
         $botman->fallback(function ($bot) {
             $bot->typesAndWaits(1);
@@ -128,16 +125,6 @@ class BotManController extends Controller
         });
     }
 
-    public function setupDialog($botman){
-        $dialogflow = ApiAi::create(env('DIALOG_FLOW_TOKEN'))->listenForAction();
-        $botman->middleware->received($dialogflow);
-        $botman->hears('my_api_action', function (BotMan $bot) {
-            $extras = $bot->getMessage()->getExtras();
-            $apiReply = $extras['apiReply'];
-            $apiAction = $extras['apiAction'];
-            $apiIntent = $extras['apiIntent'];
-            $bot->reply("this is my reply");
-        })->middleware($dialogflow);
-    }
+
 
 }
