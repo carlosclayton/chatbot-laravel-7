@@ -48,7 +48,7 @@ class FacebookController extends Controller
             'facebook' => [
                 'token' => 'EAADrUyTBRMUBALrY6F3ZCLMvI8bmSPM90EOf3ICZAzpeD4NCbqZB54TLKvWvasdAY7Bhi45s8KQYSQSCFdzxUFI1LkW84yYzl5TGHMGsn4FQKbz0P0eVKg8hqlAJZBQUxeDlEW6bnvi9dioj4ummLwHtn5rTmK6WsYQZAzExmZA4Gwfd32twQUp2WjQr34KKMZD',
                 'app_secret' => '0a2da13dbc68ab889dbc8b58ef36ff21',
-                'verification'=>'MY_SECRET_VERIFICATION_TOKEN',
+                'verification'=>'258742331458757',
             ]
         ];
 
