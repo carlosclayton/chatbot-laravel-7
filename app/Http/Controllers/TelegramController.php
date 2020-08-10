@@ -44,7 +44,7 @@ class TelegramController extends Controller
         ];
 
         DriverManager::loadDriver(TelegramDriver::class);
-        $botman = BotManFactory::create($config, new LaravelCache());
+        $botman = BotManFactory::create($config);
 
 
         $botman->hears('/start|start', function ($bot) {
