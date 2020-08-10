@@ -28,7 +28,9 @@ class FacebookController extends Controller
                 "user_cache_time" => 3600,
             ],
             "facebook" => [
-                "token" => "EAADrUyTBRMUBALrY6F3ZCLMvI8bmSPM90EOf3ICZAzpeD4NCbqZB54TLKvWvasdAY7Bhi45s8KQYSQSCFdzxUFI1LkW84yYzl5TGHMGsn4FQKbz0P0eVKg8hqlAJZBQUxeDlEW6bnvi9dioj4ummLwHtn5rTmK6WsYQZAzExmZA4Gwfd32twQUp2WjQr34KKMZD",
+                "token" => env('FACEBOOK_TOKEN'),
+                "app_secret" => env('FACEBOOK_APP_SECRET'),
+                "verification" => env('FACEBOOK_VERIFICATION')
             ]
 
         ];
