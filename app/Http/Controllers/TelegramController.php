@@ -32,7 +32,7 @@ class TelegramController extends Controller
      */
     public function handle()
     {
-        $botman = app('botman');
+//        $botman = app('botman');
 
         $config = [
             "web" => [
