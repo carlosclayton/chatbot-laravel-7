@@ -51,9 +51,9 @@ class FacebookController extends Controller
                 ]
             ]
         ];
-
+        dd($config);
         DriverManager::loadDriver(FacebookDriver::class);
-        $botman = BotManFactory::create($config);
+        $botman = BotManFactory::create($config, new LaravelCache());
 
 
         $botman->fallback(function ($bot) {
