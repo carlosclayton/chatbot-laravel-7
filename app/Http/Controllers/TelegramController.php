@@ -32,20 +32,25 @@ class TelegramController extends Controller
      */
     public function handle()
     {
-        $botman = app('botman');
+//        $botman = app('botman');
 
-//        $config = [
-//            "botman" => [
-//                'conversation_cache_time' => 3600,
-//                'user_cache_time' => 3600,
-//            ],
-//            'telegram' => [
-//                'token' => env('TELEGRAM_TOKEN')
-//            ]
-//        ];
-//
-//        DriverManager::loadDriver(TelegramDriver::class);
-//        $botman = BotManFactory::create($config);
+        $config = [
+            "web" => [
+                "matchingData" => [
+                    "driver" => "telegram",
+                ]
+            ],
+            "botman" => [
+                'conversation_cache_time' => 3600,
+                'user_cache_time' => 3600,
+            ],
+            'telegram' => [
+                'token' => env('TELEGRAM_TOKEN')
+            ]
+        ];
+
+        DriverManager::loadDriver(TelegramDriver::class);
+        $botman = BotManFactory::create($config, new LaravelCache());
 
 
         $botman->hears('/start|start', function ($bot) {
