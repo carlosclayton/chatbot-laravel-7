@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ee4f62bde8b2a40727ca1b8ad3f398b",
+    "content-hash": "316bc34dcce8dfdd60f81fddfe9df699",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -137,16 +137,16 @@
         },
         {
             "name": "botman/driver-facebook",
-            "version": "1.10.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/botman/driver-facebook.git",
-                "reference": "a02096c5b9dafddc3353e8c5eff060fcb004985f"
+                "reference": "3f08a5c5c03f9334b91a8e338e836f60c3a722b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/botman/driver-facebook/zipball/a02096c5b9dafddc3353e8c5eff060fcb004985f",
-                "reference": "a02096c5b9dafddc3353e8c5eff060fcb004985f",
+                "url": "https://api.github.com/repos/botman/driver-facebook/zipball/3f08a5c5c03f9334b91a8e338e836f60c3a722b8",
+                "reference": "3f08a5c5c03f9334b91a8e338e836f60c3a722b8",
                 "shasum": ""
             },
             "require": {
@@ -195,7 +195,7 @@
                 "facebook",
                 "facebook messenger"
             ],
-            "time": "2019-03-19T06:36:25+00:00"
+            "time": "2020-06-22T09:08:24+00:00"
         },
         {
             "name": "botman/driver-telegram",
@@ -7775,7 +7775,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "botman/driver-facebook": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
