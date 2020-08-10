@@ -41,11 +41,11 @@ class TelegramController extends Controller
                 ]
             ],
             "botman" => [
-                'conversation_cache_time' => 3600,
-                'user_cache_time' => 3600,
+                "conversation_cache_time" => 3600,
+                "user_cache_time" => 3600,
             ],
-            'telegram' => [
-                'token' => env('TELEGRAM_TOKEN')
+            "telegram" => [
+                "token" => env("TELEGRAM_TOKEN")
             ]
         ];
 
