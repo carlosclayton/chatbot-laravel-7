@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Conversations\FacebookConversation;
+use App\Conversations\TelegramConversation;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\LaravelCache;
 use BotMan\BotMan\Drivers\DriverManager;
+use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\Drivers\Facebook\FacebookDriver;
 use Illuminate\Support\Collection;
 
@@ -38,6 +41,11 @@ class FacebookController extends Controller
         DriverManager::loadDriver(FacebookDriver::class);
         $botman = BotManFactory::create($config, new LaravelCache());
 
+
+        $botman->hears('Olá|olá|ola|Ola', function ($bot) {
+            $bot->typesAndWaits(1);
+            $bot->startConversation(new FacebookConversation());
+        });
 
         $botman->fallback(function ($bot) {
             $bot->typesAndWaits(1);
