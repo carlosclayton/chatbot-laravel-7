@@ -28,7 +28,7 @@ class BotManController extends Controller
      */
     public function handle()
     {
-        $botman = app('botman');
+//        $botman = app('botman');
 
 //        $dialogflow = DialogflowV2::create('en')
 //            ->listenForAction();
