@@ -32,7 +32,7 @@ class BotManController extends Controller
      */
     public function handle()
     {
-        $botman = app('botman');
+//        $botman = app('botman');
 
 //        $dialogflow = DialogflowV2::create('en')
 //            ->listenForAction();
@@ -47,20 +47,20 @@ class BotManController extends Controller
 //            $bot->reply($apiReply);
 //        })->middleware($dialogflow);
 
-//        $config = [
-//            'web' => [
-//                'matchingData' => [
-//                    'driver' => 'web',
-//                ]
-//            ],
-//            'config' => [
-//                'user_cache_time' => 30000,
-//                'conversation_cache_time' => 30000,
-//            ]
-//        ];
-//
-//        DriverManager::loadDriver(WebDriver::class);
-//        $botman = BotManFactory::create($config, new LaravelCache());
+        $config = [
+            'web' => [
+                'matchingData' => [
+                    'driver' => 'web',
+                ]
+            ],
+            'config' => [
+                'user_cache_time' => 30000,
+                'conversation_cache_time' => 30000,
+            ]
+        ];
+
+        DriverManager::loadDriver(WebDriver::class);
+        $botman = BotManFactory::create($config, new LaravelCache());
 
         $botman->hears('Olá|olá|ola|Ola', function ($bot) {
             $bot->typesAndWaits(1);
