@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/botman/botman" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/botman/driver-facebook" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/botman/driver-telegram" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/botman/driver-web" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />

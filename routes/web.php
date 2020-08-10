@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::match(['get', 'post'], '/botman', 'BotManController@handle');
 Route::match(['get', 'post'], '/telegram', 'TelegramController@handle');
+Route::match(['get', 'post'], '/facebook', 'FacebookController@handle');
 
 Auth::routes();
 
