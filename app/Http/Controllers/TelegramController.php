@@ -32,20 +32,14 @@ class TelegramController extends Controller
      */
     public function handle()
     {
+
         $config = [
-            'web' => [
-                'matchingData' => [
-                    'driver' => 'telegram',
-                ]
+            "botman" => [
+                'conversation_cache_time' => 3600,
+                'user_cache_time' => 3600,
             ],
-            "telegram" => [
-                "telegram" => [
-                    "token" => env('TELEGRAM_TOKEN')
-                ]
-            ],
-            "config" => [
-                "user_cache_time" => 30000,
-                "conversation_cache_time" => 30000,
+            'telegram' => [
+                'token' => env('TELEGRAM_TOKEN')
             ]
         ];
 
