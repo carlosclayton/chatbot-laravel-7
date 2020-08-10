@@ -10,7 +10,9 @@
     "require": {
         "php": "^7.2.5",
         "ext-bcmath": "*",
+        "ext-curl": "*",
         "botman/botman": "^2.6",
+        "botman/driver-facebook": "^1.10",
         "botman/driver-telegram": "^1.6",
         "botman/driver-web": "^1.5",
         "fideloper/proxy": "^4.2",
