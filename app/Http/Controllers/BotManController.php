@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Conversations\QuizConversation;
-use App\Conversations\TelegramConversation;
-use App\Conversations\UserConversation;
-use App\Http\Middleware\DialogflowV2;
-use App\Http\Middleware\TypingMiddleware;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\LaravelCache;

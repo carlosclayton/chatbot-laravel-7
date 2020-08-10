@@ -32,7 +32,7 @@ class TelegramController extends Controller
      */
     public function handle()
     {
-//        $botman = app('botman');
+        $botman = app('botman');
 
         $config = [
             "web" => [
@@ -60,6 +60,15 @@ class TelegramController extends Controller
 
         $botman->hears('/lancamento|lancamento', function (Botman $botman) {
             $botman->typesAndWaits(1);
+            $attachment = new Image('https://miro.medium.com/max/1620/1*RD1s9xBIvd_ycJUnX12Tyw@2x.png', [
+                'custom_payload' => true,
+            ]);
+
+            $message = OutgoingMessage::create('Curso de Chatbot Multiplataforma ')
+                ->withAttachment($attachment);
+
+            $botman->reply($message);
+
             $botman->reply('🥰 Falta pouco para o lançamento do curso: Desenvolvendo Chatbots multiplataformas com linguagem natural usando Laravel 7');
 
             $botman->ask('Gostaria de participar?', [
@@ -98,15 +107,6 @@ class TelegramController extends Controller
             'Opa! não consegui entender, poderia repetir',
             'Ok, vamos começar de novo. Poderia tentar mais uma vez?'
         ])->random();
-    }
-
-    public function askName($botman)
-    {
-
-        $botman->ask('😀 Olá! Qual o seu nome?', function (Answer $answer) {
-            $name = $answer->getText();
-            $this->say('🥰 Prazer  ' . $name . ', como podemos ajuda-lo?');
-        });
     }
 
 
