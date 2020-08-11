@@ -9,6 +9,7 @@ use BotMan\BotMan\Cache\LaravelCache;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Attachments\Location;
 use BotMan\BotMan\Messages\Incoming\Answer;
+use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\Drivers\Facebook\Extensions\QuickReplyButton;
@@ -61,13 +62,14 @@ class FacebookController extends Controller
         });
 
         $botman->hears('Onde estamos', function ($bot) {
-            $question = Question::create('Great. Can you give me your location?')
-                ->addAction(QuickReplyButton::create('test')->type('location'));
+            $bot->reply(Question::create('Great. Can you give me your location?')
+                ->addButtons([
+                        Button::create('Yes')->value('yes'),
+                        Button::create('No')->value('no'),
+                    ]
+                )
+            );
 
-            $bot->ask($question, function (Answer $answer, $bot) {
-                $bot->reply('Latitude: ' . $answer->getMessage()->getLocation()
-                        ->getLatitude() . ' Longitude: ' . $answer->getMessage()->getLocation()->getLongitude());
-            });
         });
 
 
