@@ -8,6 +8,7 @@ use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\Drivers\Facebook\Extensions\ButtonTemplate;
 use BotMan\Drivers\Facebook\Extensions\ElementButton;
+use BotMan\Drivers\Facebook\Extensions\QuickReplyButton;
 
 class FacebookConversation extends Conversation
 {
@@ -28,6 +29,7 @@ class FacebookConversation extends Conversation
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
 //        $this->buttonTemplate();
+        $this->askLocation();
 
     }
 
@@ -56,6 +58,16 @@ class FacebookConversation extends Conversation
                 ->url('http://hub4dev.com.br/')
             )
         );
+    }
+
+    public function askLocation(){
+        $question = Question::create('Great. Can you give me your location?')
+            ->addAction(QuickReplyButton::create('test')->type('location'));
+
+        $this->ask($question, function (Answer $answer) {
+            $this->bot->reply('Latitude: '.$answer->getMessage()->getLocation()
+                    ->getLatitude().' Longitude: '.$answer->getMessage()->getLocation()->getLongitude());
+        });
     }
 
 }

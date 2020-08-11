@@ -72,13 +72,7 @@ class FacebookController extends Controller
 //            $bot->reply($message);
 //        });
 
-        $question = Question::create('Great. Can you give me your location?')
-            ->addAction(QuickReplyButton::create('test')->type('location'));
 
-        $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Latitude: '.$answer->getMessage()->getLocation()
-                    ->getLatitude().' Longitude: '.$answer->getMessage()->getLocation()->getLongitude());
-        });
 
         $botman->fallback(function ($bot) {
             $bot->typesAndWaits(1);
