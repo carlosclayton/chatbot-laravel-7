@@ -7,7 +7,9 @@ use App\Conversations\TelegramConversation;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\LaravelCache;
 use BotMan\BotMan\Drivers\DriverManager;
+use BotMan\BotMan\Messages\Attachments\Location;
 use BotMan\BotMan\Messages\Incoming\Answer;
+use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use BotMan\Drivers\Facebook\FacebookDriver;
 use Illuminate\Support\Collection;
 
@@ -46,6 +48,18 @@ class FacebookController extends Controller
         $botman->hears('Olá|olá|ola|Ola|Começar', function ($bot) {
             $bot->typesAndWaits(1);
             $bot->startConversation(new FacebookConversation());
+        });
+
+        $botman->hears('Onde estamos', function ($bot) {
+            $bot->typesAndWaits(1);
+            // Create attachment
+            $attachment = new Location(61.766130, -6.822510, [
+                'custom_payload' => true,
+            ]);
+
+            $message = OutgoingMessage::create('Nossa localização')
+                ->withAttachment($attachment);
+            $bot->reply($message);
         });
 
         $botman->fallback(function ($bot) {
