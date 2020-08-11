@@ -18,18 +18,18 @@ class FacebookConversation extends Conversation
      */
     public function run()
     {
-//        $this->message();
-        $this->askLocation();
+        $this->message();
     }
 
     public function message()
     {
         $firstName = $this->bot->getUser()->getFirstName();
 //        $this->bot->reply('ID: ' . $this->bot->getUser()->getId() );
-//        $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
+        $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
 //        $this->buttonTemplate();
-
+        $this->say('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
+        $this->askEmail();
 
     }
 
@@ -60,14 +60,21 @@ class FacebookConversation extends Conversation
         );
     }
 
-    public function askLocation(){
-        $question = Question::create('Great. Can you give me your location?')
+    public function askEmail(){
+        $question = Question::create('Podemos utilizar este e-mail para confirmações?')
             ->addAction(QuickReplyButton::create('test')->type('user_email'));
 
         $this->ask($question, function (Answer $answer) {
+            $this->bot->reply('Obrigado pela confirmação do email: ' . $answer->getValue());
+        });
+    }
+
+    public function askNumber(){
+        $question = Question::create('Podemos usar este e-mail ?')
+            ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
+
+        $this->ask($question, function (Answer $answer) {
             $this->bot->reply('Your E-mail is: ' . $answer->getValue());
-//            $this->bot->reply('Latitude: '.$answer->getMessage()->getLocation()
-//                    ->getLatitude().' Longitude: '.$answer->getMessage()->getLocation()->getLongitude());
         });
     }
 
