@@ -6,6 +6,8 @@ use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
+use BotMan\Drivers\Facebook\Extensions\ButtonTemplate;
+use BotMan\Drivers\Facebook\Extensions\ElementButton;
 
 class FacebookConversation extends Conversation
 {
@@ -33,6 +35,7 @@ class FacebookConversation extends Conversation
                 'pattern' => 'Sim|sim|claro|pode ser|tenho interesse',
                 'callback' => function () {
                     $this->say('😉 Okay, vamos registrar seu interesse. ');
+                    $this->buttonTemplate();
                 }
             ],
             [
@@ -42,6 +45,18 @@ class FacebookConversation extends Conversation
                 }
             ]
         ]);
+    }
+
+    public function buttonTemplate(){
+        $this->reply(ButtonTemplate::create('Gostaria de mais informações sobre o curso?')
+            ->addButton(ElementButton::create('Tenho interesse')
+                ->type('postback')
+                ->payload('interesse')
+            )
+            ->addButton(ElementButton::create('Mais informações')
+                ->url('http://hub4dev.com.br/')
+            )
+        );
     }
 
 }
