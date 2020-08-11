@@ -35,7 +35,7 @@ class FacebookConversation extends Conversation
                 'pattern' => 'Sim|sim|claro|pode ser|tenho interesse',
                 'callback' => function () {
                     $this->say('😉 Okay, vamos registrar seu interesse. ');
-                    $this->buttonTemplate();
+//                    $this->buttonTemplate();
                 }
             ],
             [
