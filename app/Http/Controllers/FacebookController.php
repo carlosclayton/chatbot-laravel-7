@@ -10,6 +10,8 @@ use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\BotMan\Messages\Attachments\Location;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
+use BotMan\BotMan\Messages\Outgoing\Question;
+use BotMan\Drivers\Facebook\Extensions\QuickReplyButton;
 use BotMan\Drivers\Facebook\FacebookDriver;
 use BotMan\Drivers\Facebook\FacebookLocationDriver;
 use Illuminate\Support\Collection;
@@ -44,6 +46,7 @@ class FacebookController extends Controller
 
         DriverManager::loadDriver(FacebookDriver::class);
         DriverManager::loadDriver(FacebookLocationDriver::class);
+
         $botman = BotManFactory::create($config, new LaravelCache());
 
 
@@ -53,20 +56,28 @@ class FacebookController extends Controller
         });
 
         $botman->receivesLocation(function($bot) {
-            // never runs
+            $bot->typesAndWaits(1);
             $bot->reply('location');
         });
 
-        $botman->hears('Onde estamos', function ($bot) {
-            $bot->typesAndWaits(1);
-            // Create attachment
-            $attachment = new Location(61.766130, -6.822510, [
-                'custom_payload' => true,
-            ]);
+//        $botman->hears('Onde estamos', function ($bot) {
+//            $bot->typesAndWaits(1);
+//            // Create attachment
+//            $attachment = new Face(61.766130, -6.822510, [
+//                'custom_payload' => true,
+//            ]);
+//
+//            $message = OutgoingMessage::create('Nossa localização')
+//                ->withAttachment($attachment);
+//            $bot->reply($message);
+//        });
 
-            $message = OutgoingMessage::create('Nossa localização')
-                ->withAttachment($attachment);
-            $bot->reply($message);
+        $question = Question::create('Great. Can you give me your location?')
+            ->addAction(QuickReplyButton::create('test')->type('location'));
+
+        $this->ask($question, function (Answer $answer) {
+            $this->bot->reply('Latitude: '.$answer->getMessage()->getLocation()
+                    ->getLatitude().' Longitude: '.$answer->getMessage()->getLocation()->getLongitude());
         });
 
         $botman->fallback(function ($bot) {
