@@ -62,13 +62,9 @@ class FacebookController extends Controller
         });
 
         $botman->hears('Onde estamos', function ($bot) {
-            $bot->reply(Question::create('Great. Can you give me your location?')
-                ->addButtons([
-                        Button::create('Yes')->value('yes'),
-                        Button::create('No')->value('no'),
-                    ]
-                )
-            );
+            $bot->typesAndWaits(1);
+            $bot->startConversation(new FacebookConversation());
+
 
         });
 

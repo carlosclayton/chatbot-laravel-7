@@ -18,18 +18,18 @@ class FacebookConversation extends Conversation
      */
     public function run()
     {
-        $this->message();
-
+//        $this->message();
+        $this->askLocation();
     }
 
     public function message()
     {
         $firstName = $this->bot->getUser()->getFirstName();
 //        $this->bot->reply('ID: ' . $this->bot->getUser()->getId() );
-        $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
+//        $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
 //        $this->buttonTemplate();
-//        $this->askLocation();
+
 
     }
 
