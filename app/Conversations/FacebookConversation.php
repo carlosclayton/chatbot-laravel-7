@@ -19,7 +19,7 @@ class FacebookConversation extends Conversation
     public function run()
     {
 //        $this->message();
-        $this->askLocation();
+//        $this->askLocation();
     }
 
     public function message()
