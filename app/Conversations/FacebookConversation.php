@@ -26,7 +26,7 @@ class FacebookConversation extends Conversation
         $firstName = $this->bot->getUser()->getFirstName();
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
-        $this->buttonTemplate();
+//        $this->buttonTemplate();
 
     }
 
