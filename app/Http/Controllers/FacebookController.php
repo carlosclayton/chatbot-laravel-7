@@ -42,7 +42,7 @@ class FacebookController extends Controller
         $botman = BotManFactory::create($config, new LaravelCache());
 
 
-        $botman->hears('Olá|olá|ola|Ola', function ($bot) {
+        $botman->hears('Olá|olá|ola|Ola|Começar', function ($bot) {
             $bot->typesAndWaits(1);
             $bot->startConversation(new FacebookConversation());
         });
