@@ -61,20 +61,22 @@ class FacebookConversation extends Conversation
     }
 
     public function askEmail(){
-        $question = Question::create('Podemos utilizar este e-mail para confirmações?')
+        $question = Question::create('Podemos utilizar este e-mail como principal?')
             ->addAction(QuickReplyButton::create('test')->type('user_email'));
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Obrigado pela confirmação do email: ' . $answer->getValue());
+            $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' será usado para futuras comunicações.');
         });
+
+        $this->askNumber();
     }
 
     public function askNumber(){
-        $question = Question::create('Podemos usar este e-mail ?')
+        $question = Question::create('Encontramos este e-mail, podemos cadastrá-lo em nosso sistema?')
             ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Your E-mail is: ' . $answer->getValue());
+            $this->bot->reply('Legal, o telefone: ' . $answer->getValue() . ' e seu cadastra está atualizado.');
         });
     }
 
