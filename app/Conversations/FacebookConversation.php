@@ -19,7 +19,7 @@ class FacebookConversation extends Conversation
     public function run()
     {
 //        $this->message();
-//        $this->askLocation();
+        $this->askLocation();
     }
 
     public function message()
@@ -62,11 +62,12 @@ class FacebookConversation extends Conversation
 
     public function askLocation(){
         $question = Question::create('Great. Can you give me your location?')
-            ->addAction(QuickReplyButton::create('test')->type('location'));
+            ->addAction(QuickReplyButton::create('test')->type('user_email'));
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Latitude: '.$answer->getMessage()->getLocation()
-                    ->getLatitude().' Longitude: '.$answer->getMessage()->getLocation()->getLongitude());
+            $this->bot->reply('Your E-mail is: ' . $answer->getValue());
+//            $this->bot->reply('Latitude: '.$answer->getMessage()->getLocation()
+//                    ->getLatitude().' Longitude: '.$answer->getMessage()->getLocation()->getLongitude());
         });
     }
 
