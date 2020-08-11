@@ -26,6 +26,7 @@ class FacebookConversation extends Conversation
         $firstName = $this->bot->getUser()->getFirstName();
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
         $this->askBot();
+        $this->buttonTemplate();
     }
 
     public function askBot(){
@@ -35,7 +36,7 @@ class FacebookConversation extends Conversation
                 'pattern' => 'Sim|sim|claro|pode ser|tenho interesse',
                 'callback' => function () {
                     $this->say('😉 Okay, vamos registrar seu interesse. ');
-//                    $this->buttonTemplate();
+//
                 }
             ],
             [
