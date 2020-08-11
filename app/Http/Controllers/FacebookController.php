@@ -52,6 +52,11 @@ class FacebookController extends Controller
             $bot->startConversation(new FacebookConversation());
         });
 
+        $botman->receivesLocation(function($bot) {
+            // never runs
+            $bot->reply('location');
+        });
+
         $botman->hears('Onde estamos', function ($bot) {
             $bot->typesAndWaits(1);
             // Create attachment
