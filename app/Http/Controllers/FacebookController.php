@@ -55,23 +55,20 @@ class FacebookController extends Controller
             $bot->startConversation(new FacebookConversation());
         });
 
-        $botman->receivesLocation(function($bot) {
+        $botman->receivesLocation(function ($bot) {
             $bot->typesAndWaits(1);
             $bot->reply('location');
         });
 
-//        $botman->hears('Onde estamos', function ($bot) {
-//            $bot->typesAndWaits(1);
-//            // Create attachment
-//            $attachment = new Face(61.766130, -6.822510, [
-//                'custom_payload' => true,
-//            ]);
-//
-//            $message = OutgoingMessage::create('Nossa localização')
-//                ->withAttachment($attachment);
-//            $bot->reply($message);
-//        });
+        $botman->hears('Onde estamos', function ($bot) {
+            $question = Question::create('Great. Can you give me your location?')
+                ->addAction(QuickReplyButton::create('test')->type('location'));
 
+            $bot->ask($question, function (Answer $answer) {
+                $answer->reply('Latitude: ' . $answer->getMessage()->getLocation()
+                        ->getLatitude() . ' Longitude: ' . $answer->getMessage()->getLocation()->getLongitude());
+            });
+        });
 
 
         $botman->fallback(function ($bot) {
