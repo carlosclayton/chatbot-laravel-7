@@ -11,6 +11,7 @@ use BotMan\BotMan\Messages\Attachments\Location;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use BotMan\Drivers\Facebook\FacebookDriver;
+use BotMan\Drivers\Facebook\FacebookLocationDriver;
 use Illuminate\Support\Collection;
 
 class FacebookController extends Controller
@@ -42,6 +43,7 @@ class FacebookController extends Controller
         ];
 
         DriverManager::loadDriver(FacebookDriver::class);
+        DriverManager::loadDriver(FacebookLocationDriver::class);
         $botman = BotManFactory::create($config, new LaravelCache());
 
 
