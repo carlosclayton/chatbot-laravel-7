@@ -25,19 +25,21 @@ class FacebookConversation extends Conversation
 
     public function message()
     {
-//        $this->typesAndWaits(1);
+
         $firstName = $this->bot->getUser()->getFirstName();
 //        $this->bot->reply('ID: ' . $this->bot->getUser()->getId() );
 
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
 //        $this->buttonTemplate();
+        $this->typesAndWaits(2);
         $this->say('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
         $this->askEmail();
 
     }
 
-    public function askBot(){
+    public function askBot()
+    {
 
         $this->ask('Gostaria de aprender a criar Chatbot multiplataformas usando Laravel 7 e linguagem natural? ', [
             [
@@ -56,7 +58,8 @@ class FacebookConversation extends Conversation
         ]);
     }
 
-    public function buttonTemplate(){
+    public function buttonTemplate()
+    {
         $this->reply(ButtonTemplate::create('Gostaria de mais informações sobre o curso?')
             ->addButton(ElementButton::create('Mais informações')
                 ->url('http://hub4dev.com.br/')
@@ -64,7 +67,8 @@ class FacebookConversation extends Conversation
         );
     }
 
-    public function askEmail(){
+    public function askEmail()
+    {
 //        $this->typesAndWaits(2);
         $question = Question::create('Podemos utilizar este e-mail como principal?')
             ->addAction(QuickReplyButton::create('test')->type('user_email'));
@@ -77,7 +81,8 @@ class FacebookConversation extends Conversation
 
     }
 
-    public function askNumber(){
+    public function askNumber()
+    {
 //        $this->typesAndWaits(1);
         $question = Question::create('Este telefone ainda é usado por você?')
             ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
