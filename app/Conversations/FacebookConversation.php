@@ -74,9 +74,11 @@ class FacebookConversation extends Conversation
             ->addAction(QuickReplyButton::create('test')->type('user_email'));
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
+            if ($answer->isInteractiveMessageReply()) {
+                $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
 //            $this->typesAndWaits(2);
-            $this->askNumber();
+                $this->askNumber();
+            }
         });
 
     }
@@ -88,7 +90,9 @@ class FacebookConversation extends Conversation
             ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Legal, o telefone: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
+            if ($answer->isInteractiveMessageReply()) {
+                $this->bot->reply('Legal, o telefone: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
+            }
         });
     }
 
