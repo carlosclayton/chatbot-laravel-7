@@ -54,7 +54,7 @@ class FacebookController extends Controller
 
         $botman->hears('Olá|olá|ola|Ola|Começar', function ($bot) {
             $bot->typesAndWaits(1);
-            $bot->startConversation(new FacebookConversation());
+            $bot->startConversation(new FacebookConversation())->stopsConversation();;
         });
 
         $botman->receivesLocation(function ($bot) {
@@ -64,7 +64,7 @@ class FacebookController extends Controller
 
         $botman->hears('iniciar_pesquisa', function ($bot) {
             $bot->typesAndWaits(1);
-            $bot->startConversation(new FacebookQuizConversation());
+            $bot->startConversation(new FacebookQuizConversation())->stopsConversation();;
 
 
         });

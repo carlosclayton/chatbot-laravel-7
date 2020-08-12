@@ -47,7 +47,7 @@ class FacebookQuizConversation extends Conversation
         $this->ask($question, function (Answer $answer) {
             $this->typesAndWaits(1);
             $this->bot->reply('Ok, vamos pra próxima...');
-            $this->askQuestionThree();
+            return $this->askQuestionThree();
         });
     }
 
