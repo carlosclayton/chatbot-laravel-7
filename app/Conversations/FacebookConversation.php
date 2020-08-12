@@ -33,9 +33,7 @@ class FacebookConversation extends Conversation
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
 //        $this->buttonTemplate();
-        $this->bot->typesAndWaits(1);
-        $this->bot->reply('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
-        $this->askEmail();
+
 
     }
 
@@ -68,33 +66,5 @@ class FacebookConversation extends Conversation
         );
     }
 
-    public function askEmail()
-    {
-//        $this->typesAndWaits(2);
-        $question = Question::create('Podemos utilizar este e-mail como principal?')
-            ->addAction(QuickReplyButton::create('test')->type('user_email'));
-
-        $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
-                $this->bot->typesAndWaits(1);
-                $this->askNumber();
-            }
-        });
-
-    }
-
-    public function askNumber()
-    {
-
-        $question = Question::create('Este telefone ainda é usado por você?')
-            ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
-
-        $this->ask($question, function (Answer $answer) {
-            if ($answer->isInteractiveMessageReply()) {
-                $this->bot->reply('Legal, o telefone: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
-            }
-        });
-    }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Conversations\FacebookConversation;
+use App\Conversations\FacebookProfileConversation;
 use App\Conversations\FacebookQuizConversation;
 use App\Conversations\TelegramConversation;
 use BotMan\BotMan\BotManFactory;
@@ -60,6 +61,13 @@ class FacebookController extends Controller
         $botman->receivesLocation(function ($bot) {
             $bot->typesAndWaits(1);
             $bot->reply('location');
+        });
+
+        $botman->hears('user_profile', function ($bot) {
+            $bot->typesAndWaits(1);
+            $bot->startConversation(new FacebookProfileConversation());
+
+
         });
 
         $botman->hears('iniciar_pesquisa', function ($bot) {

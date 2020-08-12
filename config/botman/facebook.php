@@ -14,9 +14,9 @@ return [
         "locale" => "default",
         "composer_input_disabled" => "false",
         "call_to_actions" => array([
-            "title" => "Pesquisa de satisfação",
+            "title" => "Meus dados",
               "type" => "postback",
-              "payload" => "iniciar_pesquisa"
+              "payload" => "user_profile"
         ])
     ])
 
