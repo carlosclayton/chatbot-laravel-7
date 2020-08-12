@@ -23,7 +23,7 @@ class FacebookQuizConversation extends Conversation
 
     private function askQuestionOne()
     {
-        $this->typesAndWaits(3);
+//        $this->typesAndWaits(3);
         $question = Question::create('Qual a sua avaliação para este atendimento?')->addButtons([
             Button::create('Ótimo')->value('otimo'),
             Button::create('Regular')->value('regular'),
@@ -39,7 +39,7 @@ class FacebookQuizConversation extends Conversation
 
     private function askQuestionTwo()
     {
-        $this->typesAndWaits(3);
+//        $this->typesAndWaits(3);
         $question = Question::create('O atendente conseguiu resolver o seu problema?')->addButtons([
             Button::create('Sim')->value('sim'),
             Button::create('Não')->value('nao'),
@@ -54,7 +54,7 @@ class FacebookQuizConversation extends Conversation
 
     private function askQuestionThree()
     {
-        $this->typesAndWaits(3);
+//        $this->typesAndWaits(3);
         $question = Question::create('Você recomendaria nossos serviços?')->addButtons([
             Button::create('Sim')->value('sim'),
             Button::create('Não')->value('nao'),
