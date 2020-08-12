@@ -33,7 +33,7 @@ class FacebookConversation extends Conversation
 //        $this->askBot();
 //        $this->buttonTemplate();
 //        $this->typesAndWaits(2);
-        $this->say('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
+        $this->bot->reply('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
         $this->askEmail();
 
     }
