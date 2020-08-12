@@ -18,7 +18,7 @@ class FacebookQuizConversation extends Conversation
      */
     public function run()
     {
-//        $this->askQuestionOne();
+        $this->askQuestionOne();
     }
 
     private function askQuestionOne()
@@ -30,8 +30,8 @@ class FacebookQuizConversation extends Conversation
         ]);
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Ok, vamos pra próxima...');
             $this->typesAndWaits(1);
+            $this->bot->reply('Ok, vamos pra próxima...');
             $this->askQuestionTwo();
         });
     }
@@ -45,8 +45,8 @@ class FacebookQuizConversation extends Conversation
         ]);
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Ok, vamos pra próxima...');
             $this->typesAndWaits(1);
+            $this->bot->reply('Ok, vamos pra próxima...');
             $this->askQuestionThree();
         });
     }
@@ -61,8 +61,6 @@ class FacebookQuizConversation extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             $this->bot->reply('Pesquisa finalizada, agradecemos pela atenção.');
-
-
         });
     }
 
