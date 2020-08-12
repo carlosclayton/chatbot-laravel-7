@@ -14,9 +14,9 @@ return [
         "locale" => "default",
         "composer_input_disabled" => "false",
         "call_to_actions" => array([
-            "title" => "Ver localização",
+            "title" => "Pesquisa de satisfação",
               "type" => "postback",
-              "payload" => "Onde estamos "
+              "payload" => "iniciar_pesquisa"
         ])
     ])
 

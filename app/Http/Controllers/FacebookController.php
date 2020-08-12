@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Conversations\FacebookConversation;
+use App\Conversations\FacebookQuizConversation;
 use App\Conversations\TelegramConversation;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Cache\LaravelCache;
@@ -61,9 +62,9 @@ class FacebookController extends Controller
             $bot->reply('location');
         });
 
-        $botman->hears('Onde estamos', function ($bot) {
+        $botman->hears('iniciar_pesquisa', function ($bot) {
             $bot->typesAndWaits(1);
-            $bot->startConversation(new FacebookConversation());
+            $bot->startConversation(new FacebookQuizConversation());
 
 
         });
