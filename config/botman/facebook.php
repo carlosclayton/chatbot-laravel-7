@@ -14,9 +14,9 @@ return [
         "locale" => "default",
         "composer_input_disabled" => "false",
         "call_to_actions" => array([
-            "title" => "Meus dados",
+            "title" => "Ver cursos",
             "type" => "postback",
-            "payload" => "user_profile"
+            "payload" => "cursos"
         ], [
             "title" => "Pesquisa de satisfação",
             "type" => "postback",

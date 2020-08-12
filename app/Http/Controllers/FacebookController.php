@@ -122,6 +122,13 @@ class FacebookController extends Controller
 
         });
 
+        $botman->hears('fazer_reserva', function ($bot) {
+            $bot->typesAndWaits(1);
+            $bot->reply('Perfeito! sua reserva já está confirmada.');
+
+
+        });
+
 
         $botman->fallback(function ($bot) {
             $bot->typesAndWaits(1);
