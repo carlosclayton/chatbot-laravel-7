@@ -65,14 +65,14 @@ class FacebookConversation extends Conversation
             ->addAction(QuickReplyButton::create('test')->type('user_email'));
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' será usado para futuras comunicações.');
+            $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
             $this->askNumber();
         });
 
     }
 
     public function askNumber(){
-        $question = Question::create('Encontramos este e-mail, podemos cadastrá-lo em nosso sistema?')
+        $question = Question::create('Este telefone ainda é usado por você?')
             ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
 
         $this->ask($question, function (Answer $answer) {
