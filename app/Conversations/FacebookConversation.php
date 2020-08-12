@@ -65,13 +65,13 @@ class FacebookConversation extends Conversation
     }
 
     public function askEmail(){
-        $this->typesAndWaits(2);
+//        $this->typesAndWaits(2);
         $question = Question::create('Podemos utilizar este e-mail como principal?')
             ->addAction(QuickReplyButton::create('test')->type('user_email'));
 
         $this->ask($question, function (Answer $answer) {
             $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
-            $this->typesAndWaits(2);
+//            $this->typesAndWaits(2);
             $this->askNumber();
         });
 
