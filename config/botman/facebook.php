@@ -21,6 +21,11 @@ return [
             "title" => "Pesquisa de satisfação",
             "type" => "postback",
             "payload" => "iniciar_pesquisa"
+        ], [
+            "title" => "Visitar site",
+            "type" => "web_url",
+            "url" => "http://www.hub4dev.com.br",
+            "webview_height_ratio" => "full"
         ]
         )
     ])

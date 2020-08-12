@@ -14,6 +14,9 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\OutgoingMessage;
 use BotMan\BotMan\Messages\Outgoing\Question;
+use BotMan\Drivers\Facebook\Extensions\Element;
+use BotMan\Drivers\Facebook\Extensions\ElementButton;
+use BotMan\Drivers\Facebook\Extensions\GenericTemplate;
 use BotMan\Drivers\Facebook\Extensions\QuickReplyButton;
 use BotMan\Drivers\Facebook\FacebookDriver;
 use BotMan\Drivers\Facebook\FacebookLocationDriver;
@@ -73,6 +76,32 @@ class FacebookController extends Controller
         $botman->hears('iniciar_pesquisa', function ($bot) {
             $bot->typesAndWaits(1);
             $bot->startConversation(new FacebookQuizConversation());
+
+
+        });
+        $botman->hears('cursos', function ($bot) {
+            $bot->typesAndWaits(1);
+            $bot->reply(GenericTemplate::create()
+                ->addImageAspectRatio(GenericTemplate::RATIO_SQUARE)
+                ->addElements([
+                    Element::create('BotMan Documentation')
+                        ->subtitle('All about BotMan')
+                        ->image('http://botman.io/img/botman-body.png')
+                        ->addButton(ElementButton::create('visit')
+                            ->url('http://botman.io')
+                        )
+                        ->addButton(ElementButton::create('tell me more')
+                            ->payload('tellmemore')
+                            ->type('postback')
+                        ),
+                    Element::create('BotMan Laravel Starter')
+                        ->subtitle('This is the best way to start with Laravel and BotMan')
+                        ->image('http://botman.io/img/botman-body.png')
+                        ->addButton(ElementButton::create('visit')
+                            ->url('https://github.com/mpociot/botman-laravel-starter')
+                        ),
+                ])
+            );
 
 
         });
