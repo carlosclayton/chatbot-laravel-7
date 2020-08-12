@@ -66,9 +66,9 @@ class FacebookConversation extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' será usado para futuras comunicações.');
+            $this->askNumber();
         });
 
-        $this->askNumber();
     }
 
     public function askNumber(){
@@ -76,7 +76,7 @@ class FacebookConversation extends Conversation
             ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Legal, o telefone: ' . $answer->getValue() . ' e seu cadastra está atualizado.');
+            $this->bot->reply('Legal, o telefone: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
         });
     }
 
