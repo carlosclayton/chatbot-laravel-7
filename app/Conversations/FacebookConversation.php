@@ -33,7 +33,7 @@ class FacebookConversation extends Conversation
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou o seu assistente virtual.');
 
         $this->bot->typesAndWaits(1);
-        $this->seguirTrilha();
+        $this->introducaoTrilha();
 //        $this->askBot();
 //        $this->buttonTemplate();
 
@@ -43,18 +43,18 @@ class FacebookConversation extends Conversation
     public function askBot()
     {
 
-        $this->ask('Gostaria de aprender a criar Chatbot multiplataformas usando Laravel 7 e linguagem natural? ', [
+        $this->bot->ask('Gostaria de conhecer as trilhas que estão disponíveis no momento? ', [
             [
                 'pattern' => 'Sim|sim|claro|pode ser|tenho interesse',
                 'callback' => function () {
-                    $this->say('😉 Okay, vamos registrar seu interesse. ');
+                    $this->bot->reply('😉 Okay, vamos registrar seu interesse. ');
 //
                 }
             ],
             [
                 'pattern' => 'não|nao|obrigado',
                 'callback' => function () {
-                    $this->say('😔 Tudo bem, fica pra próxima.');
+                    $this->bot->reply('😔 Tudo bem, fica pra próxima.');
                 }
             ]
         ]);
@@ -70,10 +70,12 @@ class FacebookConversation extends Conversation
         );
     }
 
-    public function seguirTrilha()
+    public function introducaoTrilha()
     {
 
-        $this->bot->reply("O HUB4DEV O HUB4DEV foi criado para suprir a necessidade que o mercado de Desenvolvimento de Software tem por profissionais mais práticos.  ");
+        $this->bot->reply("O HUB4DEV foi criado para suprir a necessidade que o mercado de Desenvolvimento de Software tem por profissionais mais práticos.  ");
+        $this->bot->typesAndWaits(1);
+        $this->bot->reply("Nós oferecemos diversas trilhas de aprendizagem para ajudar você a atingir seus obetivos de forma mais rápida e consistente.");
 
     }
 
