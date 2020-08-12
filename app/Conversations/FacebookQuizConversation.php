@@ -23,7 +23,7 @@ class FacebookQuizConversation extends Conversation
 
     private function askQuestionOne()
     {
-        $this->typesAndWaits(2);
+
         $question = Question::create('Qual a sua avaliação para este atendimento?')->addButtons([
             Button::create('Ótimo')->value('otimo'),
             Button::create('Regular')->value('regular'),
