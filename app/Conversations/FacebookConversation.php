@@ -32,6 +32,7 @@ class FacebookConversation extends Conversation
         $this->bot->typesAndWaits(1);
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou o seu assistente virtual.');
 
+        $this->bot->typesAndWaits(1);
         $this->seguirTrilha();
 //        $this->askBot();
 //        $this->buttonTemplate();
