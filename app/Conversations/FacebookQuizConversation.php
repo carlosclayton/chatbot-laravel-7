@@ -31,7 +31,7 @@ class FacebookQuizConversation extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             $this->typesAndWaits(1);
-            $this->bot->say('Ok, vamos pra próxima...');
+            $this->bot->reply('Ok, vamos pra próxima...');
             return $this->askQuestionTwo();
         });
     }
@@ -46,7 +46,7 @@ class FacebookQuizConversation extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             $this->typesAndWaits(1);
-            $this->bot->say('Ok, vamos pra próxima...');
+            $this->bot->reply('Ok, vamos pra próxima...');
             return $this->askQuestionThree();
         });
     }
@@ -60,7 +60,7 @@ class FacebookQuizConversation extends Conversation
         ]);
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->say('Pesquisa finalizada, agradecemos pela atenção.');
+            $this->bot->reply('Pesquisa finalizada, agradecemos pela atenção.');
         });
     }
 

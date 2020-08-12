@@ -19,15 +19,20 @@ class FacebookConversation extends Conversation
     public function run()
     {
         $this->message();
+        $this->typesAndWaits(1);
+
     }
 
     public function message()
     {
+
         $firstName = $this->bot->getUser()->getFirstName();
 //        $this->bot->reply('ID: ' . $this->bot->getUser()->getId() );
+
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
 //        $this->buttonTemplate();
+        $this->typesAndWaits(1);
         $this->say('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
         $this->askEmail();
 
@@ -61,6 +66,7 @@ class FacebookConversation extends Conversation
     }
 
     public function askEmail(){
+        $this->typesAndWaits(1);
         $question = Question::create('Podemos utilizar este e-mail como principal?')
             ->addAction(QuickReplyButton::create('test')->type('user_email'));
 
@@ -72,6 +78,7 @@ class FacebookConversation extends Conversation
     }
 
     public function askNumber(){
+        $this->typesAndWaits(1);
         $question = Question::create('Este telefone ainda é usado por você?')
             ->addAction(QuickReplyButton::create('test')->type('user_phone_number'));
 
