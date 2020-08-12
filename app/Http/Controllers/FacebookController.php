@@ -79,13 +79,14 @@ class FacebookController extends Controller
 
 
         });
+
         $botman->hears('cursos', function ($bot) {
             $bot->typesAndWaits(1);
             $bot->reply(GenericTemplate::create()
                 ->addImageAspectRatio(GenericTemplate::RATIO_SQUARE)
                 ->addElements([
                     Element::create('LARAVEL 5.8 – TORNE-SE UM DESENVOLVEDOR FULL STACK')
-                        ->subtitle('Esta trilha tem como objetivo qualificar desenvolvedores para atuar como Full Stack Developer, um conceito que coloca o desenvolvedor no centro do processo de desenvolvimento. Ou seja, Infrastrutura, Designer, Banco de dados, testes, Front End e Back End fazem parte do background Full Stack.    Diante disso, iremos ver todos os aspectos envolvidos no processo de desenvolvimento de aplicações de ponta-a-ponta utilizando o Framework Laravel 5.7 juntamente com a poderosa  Platform as a Service Heroku para rodar  Pipelines e Review Apps tudo de forma integrada com Github.')
+                        ->subtitle('Esta trilha tem como objetivo qualificar desenvolvedores para atuar como Full Stack Developer.')
                         ->image('http://hub4dev.com.br/wp-content/uploads/2019/08/banner_trilha_fullstack-2-1024x362.jpg')
                         ->addButton(ElementButton::create('Mais informações')
                             ->url('http://hub4dev.com.br/laravel-5-8-torne-se-um-desenvolvedor-full-stack/')
@@ -94,11 +95,15 @@ class FacebookController extends Controller
                             ->payload('fazer_reserva')
                             ->type('postback')
                         ),
-                    Element::create('BotMan Laravel Starter')
-                        ->subtitle('This is the best way to start with Laravel and BotMan')
-                        ->image('http://botman.io/img/botman-body.png')
-                        ->addButton(ElementButton::create('visit')
-                            ->url('https://github.com/mpociot/botman-laravel-starter')
+                    Element::create('LARAVEL 5.8 – DESENVOLVIMENTO DE UMA API RESTFUL')
+                        ->subtitle('Esta trilha tem como objetivo abordar todos aspectos envolvidos no processo de desenvolvimento de uma poderosa API utilizando o Framework Laravel.')
+                        ->image('http://hub4dev.com.br/wp-content/uploads/2019/11/BANNER-LARAVEL-API-RESTFUL-1-1024x452.jpg')
+                        ->addButton(ElementButton::create('Mais informações')
+                            ->url('http://hub4dev.com.br/laravel-5-8-desenvolvimento-de-uma-api-restfull/')
+                        )
+                        ->addButton(ElementButton::create('Tenho interesse')
+                            ->payload('fazer_reserva')
+                            ->type('postback')
                         ),
                 ])
             );
