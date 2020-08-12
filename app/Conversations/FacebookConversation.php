@@ -76,7 +76,7 @@ class FacebookConversation extends Conversation
         $this->ask($question, function (Answer $answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $this->bot->reply('Obrigado, o e-mail: ' . $answer->getValue() . ' foi cadastrado com sucesso.');
-            $this->typesAndWaits(1);
+                $this->bot->typesAndWaits(1);
                 $this->askNumber();
             }
         });
