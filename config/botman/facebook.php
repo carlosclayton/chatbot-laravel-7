@@ -15,9 +15,14 @@ return [
         "composer_input_disabled" => "false",
         "call_to_actions" => array([
             "title" => "Meus dados",
-              "type" => "postback",
-              "payload" => "user_profile"
-        ])
+            "type" => "postback",
+            "payload" => "user_profile"
+        ], [
+            "title" => "Pesquisa de satisfação",
+            "type" => "postback",
+            "payload" => "iniciar_pesquisa"
+        ]
+        )
     ])
 
 ];

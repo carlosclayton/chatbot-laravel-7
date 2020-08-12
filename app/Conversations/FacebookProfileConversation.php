@@ -20,7 +20,6 @@ class FacebookProfileConversation extends Conversation
     {
         $this->message();
 
-
     }
 
     public function message()
