@@ -17,6 +17,7 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 use BotMan\Drivers\Facebook\Extensions\Element;
 use BotMan\Drivers\Facebook\Extensions\ElementButton;
 use BotMan\Drivers\Facebook\Extensions\GenericTemplate;
+use BotMan\Drivers\Facebook\Extensions\ListTemplate;
 use BotMan\Drivers\Facebook\Extensions\QuickReplyButton;
 use BotMan\Drivers\Facebook\FacebookDriver;
 use BotMan\Drivers\Facebook\FacebookLocationDriver;
@@ -56,7 +57,7 @@ class FacebookController extends Controller
         $botman = BotManFactory::create($config, new LaravelCache());
 
 
-        $botman->hears('Olá|olá|ola|Ola|Começar', function ($bot) {
+        $botman->hears('Olá|olá|ola|Ola|Começar|olá!', function ($bot) {
             $bot->typesAndWaits(1);
             $bot->startConversation(new FacebookConversation());
         });
@@ -127,6 +128,37 @@ class FacebookController extends Controller
             $bot->reply('Perfeito! sua reserva já está confirmada.');
 
 
+        });
+
+
+        $botman->hears('blog', function ($bot) {
+            $bot->reply(ListTemplate::create()
+                ->useCompactView()
+                ->addGlobalButton(ElementButton::create('Mais Notícias')
+                    ->url('http://hub4dev.com.br/blog/')
+                )
+                ->addElement(Element::create('Como fazer deploy de aplicações Laravel 5.8 usando Heroku')
+                    ->subtitle('Hoje vamos aprender como fazer deploy de aplicações Laravel usando o Heroku. ')
+                    ->image('http://hub4dev.com.br/wp-content/uploads/2019/11/banner-deploy-870x489.jpg')
+                    ->addButton(ElementButton::create('Acessar')
+                        ->url('http://hub4dev.com.br/2019/11/18/como-fazer-deploy-de-aplicacoes-laravel-usando-heroku/')
+                    )
+                )
+                ->addElement(Element::create('Laravel Passport - Criando uma API de autenticação RestFul')
+                    ->subtitle('Antes de iniciar a prática, vamos entender alguns conceitos básicos que estão envolvidos neste Post. ')
+                    ->image('http://hub4dev.com.br/wp-content/uploads/2019/08/banner-laravel-passport-api-restful-870x383.png')
+                    ->addButton(ElementButton::create('Acessar')
+                        ->url('http://hub4dev.com.br/2019/08/19/laravel-passaport-criando-uma-api-de-autenticacao-restful/')
+                    )
+                )
+                ->addElement(Element::create('Configuração do ambiente de desenvolvimento Laravel 5.8 usando Ubuntu 18.04 LTS no Windows 10')
+                    ->subtitle('É isso mesmo que você leu, vamos aprender a configurar o ambiente de desenvolvimento o Laravel na versão 5.8 usando o Ubuntu 18.04 diretamente no Windows 10. ')
+                    ->image('http://hub4dev.com.br/wp-content/uploads/2019/08/banner-laravel-passport-api-restful-870x383.png')
+                    ->addButton(ElementButton::create('visit')
+                        ->url('http://hub4dev.com.br/2019/08/10/configuracao-do-ambiente-de-desenvolvimento-laravel-5-8-usando-ubuntu-18-04-lts-no-windows-10/')
+                    )
+                )
+            );
         });
 
 

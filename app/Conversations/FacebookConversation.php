@@ -32,7 +32,7 @@ class FacebookConversation extends Conversation
         $this->bot->typesAndWaits(1);
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou o seu assistente virtual.');
         $this->bot->typesAndWaits(2);
-        
+
 //        $this->askBot();
 //        $this->buttonTemplate();
 
@@ -59,6 +59,7 @@ class FacebookConversation extends Conversation
         ]);
     }
 
+
     public function buttonTemplate()
     {
         $this->reply(ButtonTemplate::create('Gostaria de mais informações sobre o curso?')
@@ -66,6 +67,13 @@ class FacebookConversation extends Conversation
                 ->url('http://hub4dev.com.br/')
             )
         );
+    }
+
+    public function seguirTrilha()
+    {
+        $this->bot->typesAndWaits(2);
+        $this->bot->say("O HUB4DEV O HUB4DEV foi criado para suprir a necessidade que o mercado de Desenvolvimento de Software tem por profissionais mais práticos.  ");
+
     }
 
 
