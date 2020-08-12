@@ -105,6 +105,17 @@ class FacebookController extends Controller
                             ->payload('fazer_reserva')
                             ->type('postback')
                         ),
+                    Element::create('PROVISIONANDO TECNOLOGIAS PARA GARANTIR ALTA DISPONIBILIDADE DE APLICAÇÕES LARAVEL')
+                        ->subtitle('Esta trilha tem como objetivo explorar a cultura DevOps através de um conjunto de práticas para integração entre as equipes de desenvolvimento de softwares e operações através da adoção de processos automatizados para produção rápida e segura de aplicações Laravel.')
+                        ->image('http://hub4dev.com.br/wp-content/uploads/2019/11/banner-trilha-devops-1024x564.jpg')
+                        ->addButton(ElementButton::create('Mais informações')
+                            ->url('http://hub4dev.com.br/provisionando-tecnologias-para-garantir-alta-disponibilidade-de-aplicacoes-laravel/')
+                        )
+                        ->addButton(ElementButton::create('Tenho interesse')
+                            ->payload('fazer_reserva')
+                            ->type('postback')
+                        ),
+
                 ])
             );
 
