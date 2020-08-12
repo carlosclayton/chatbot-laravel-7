@@ -63,8 +63,8 @@ class FacebookController extends Controller
         });
 
         $botman->hears('iniciar_pesquisa', function ($bot) {
-            $bot->typesAndWaits(2);
-            $bot->startConversation(new FacebookQuizConversation())->stopsConversation();;
+            $bot->typesAndWaits(1);
+            $bot->startConversation(new FacebookQuizConversation());
 
 
         });

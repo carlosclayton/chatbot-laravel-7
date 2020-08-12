@@ -33,6 +33,7 @@ class FacebookQuizConversation extends Conversation
         $this->ask($question, function (Answer $answer) {
 
             $this->bot->reply('Ok, vamos pra próxima...');
+            $this->bot->typesAndWaits(1);
             $this->askQuestionTwo();
         });
     }
@@ -48,6 +49,7 @@ class FacebookQuizConversation extends Conversation
 
         $this->ask($question, function (Answer $answer) {
             $this->bot->reply('Ok, vamos pra próxima...');
+            $this->bot->typesAndWaits(1);
             $this->askQuestionThree();
         });
     }
