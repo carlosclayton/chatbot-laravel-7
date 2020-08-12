@@ -29,14 +29,11 @@ class FacebookConversation extends Conversation
         $firstName = $this->bot->getUser()->getFirstName();
 //        $this->bot->reply('ID: ' . $this->bot->getUser()->getId() );
 
-        $this->typesAndWaits(1);
         $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
 //        $this->askBot();
 //        $this->buttonTemplate();
-        $this->typesAndWaits(1);
-        $this->bot->reply('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
 
-        $this->typesAndWaits(1);
+        $this->bot->reply('Para iniciar nosso atendimento, preciso confirmar algumas informações pessoais com vc 😏');
         $this->askEmail();
 
     }
