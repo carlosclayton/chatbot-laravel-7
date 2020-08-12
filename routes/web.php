@@ -25,3 +25,11 @@ Route::match(['get', 'post'], '/facebook', 'FacebookController@handle');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/privacy', function () {
+    return 'Privacy';
+});
+
+Route::get('/rules', function () {
+    return 'Rules';
+});

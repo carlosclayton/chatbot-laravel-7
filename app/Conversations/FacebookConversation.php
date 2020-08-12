@@ -30,7 +30,9 @@ class FacebookConversation extends Conversation
 //        $this->bot->reply('ID: ' . $this->bot->getUser()->getId() );
 
         $this->bot->typesAndWaits(1);
-        $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou Carlos o seu assistente virtual.');
+        $this->bot->reply('Olá ' . $firstName . ', seja bem vindo ao nosso atendimento, sou o seu assistente virtual.');
+        $this->bot->typesAndWaits(2);
+        
 //        $this->askBot();
 //        $this->buttonTemplate();
 
