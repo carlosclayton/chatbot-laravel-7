@@ -18,7 +18,7 @@ class FacebookQuizConversation extends Conversation
      */
     public function run()
     {
-        $this->askQuestionOne();
+//        $this->askQuestionOne();
     }
 
     private function askQuestionOne()
