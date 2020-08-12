@@ -53,7 +53,7 @@ class FacebookController extends Controller
 
 
         $botman->hears('Olá|olá|ola|Ola|Começar', function ($bot) {
-            $bot->typesAndWaits(2);
+//            $bot->typesAndWaits(2);
             $bot->startConversation(new FacebookConversation());
         });
 
