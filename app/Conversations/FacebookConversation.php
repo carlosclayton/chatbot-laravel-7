@@ -72,7 +72,7 @@ class FacebookConversation extends Conversation
     public function seguirTrilha()
     {
 
-        $this->bot->say("O HUB4DEV O HUB4DEV foi criado para suprir a necessidade que o mercado de Desenvolvimento de Software tem por profissionais mais práticos.  ");
+        $this->bot->reply("O HUB4DEV O HUB4DEV foi criado para suprir a necessidade que o mercado de Desenvolvimento de Software tem por profissionais mais práticos.  ");
 
     }
 
