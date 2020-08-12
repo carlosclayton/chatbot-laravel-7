@@ -60,7 +60,7 @@ class FacebookQuizConversation extends Conversation
         ]);
 
         $this->ask($question, function (Answer $answer) {
-            $this->bot->reply('Pesquisa finalizada, agradecemos pela atenção.');
+            return $this->bot->reply('Pesquisa finalizada, agradecemos pela atenção.');
         });
     }
 
